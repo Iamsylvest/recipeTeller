@@ -9,6 +9,7 @@ export const useRecipDetails = defineStore('recipe', {
             lastPage: 1,
             fetchedRecipes: false,
             errorRecipes: null,
+            searchRecipe: '',
       }),
 
       actions: {
@@ -52,7 +53,7 @@ export const useRecipDetails = defineStore('recipe', {
                         this.allRecipes = allRecipes;
 
                         // ✅ Calculate how many pages are needed (10 per page)
-                        const perPage = 10;
+                        const perPage = 6;
                         this.lastPage = Math.ceil(
                               this.allRecipes.length / perPage
                         );
@@ -75,7 +76,7 @@ export const useRecipDetails = defineStore('recipe', {
 
             applyPagination() {
                   // ✅ Show only recipes for the current page
-                  const perPage = 10;
+                  const perPage = 6;
                   const start = (this.currentPage - 1) * perPage; // starting index
                   const end = start + perPage; // ending index
                   this.recipes = this.allRecipes.slice(start, end); // slice 10 recipes

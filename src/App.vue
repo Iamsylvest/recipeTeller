@@ -1,6 +1,7 @@
 <script setup>
       import { RouterLink, RouterView } from 'vue-router';
       import Nav from './components/Nav.vue';
+      import SearchedRecipe from '@/components/SearchedRecipe.vue';
       import Dashboard from './pages/Dashboard.vue';
 </script>
 
@@ -8,7 +9,6 @@
       <header>
             <div>
                   <Nav />
-                  <Dashboard />
             </div>
       </header>
 
