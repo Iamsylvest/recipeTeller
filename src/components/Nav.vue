@@ -3,18 +3,14 @@
             <nav
                   class="fixed top-0 left-0 z-50 flex justify-between w-full gap-12 p-4 px-12 font-bold text-white bg-customGreen"
             >
-                  <router-link to="/"> <Logo /> </router-link>
-
-                  <div class="flex items-end justify-end gap-12">
-                        <div
-                              class="flex items-center justify-between"
-                              v-if="!isSeeRecipePage"
-                        >
+                  <div class="flex items-end justify-end gap-4">
+                        <router-link to="/"> <Logo /> </router-link>
+                        <div class="" v-if="!isSeeRecipePage">
                               <!-- Mobile Search Button -->
                               <button
                                     :disabled="isSeeRecipePage"
                                     @click="toggleHamburger"
-                                    class="flex items-center gap-1 rounded md:hidden"
+                                    class="flex items-center gap-1 text-sm rounded md:hidden sm:text-md"
                                     :class="showHamburger ? '' : ''"
                               >
                                     <svg
@@ -23,7 +19,7 @@
                                           viewBox="0 0 24 24"
                                           stroke-width="1.5"
                                           stroke="currentColor"
-                                          class="w-6 h-6"
+                                          class="w-4 h-4"
                                     >
                                           <path
                                                 stroke-linecap="round"
@@ -34,22 +30,21 @@
                                     Search
                               </button>
 
-                              <!-- Desktop Search (always visible) -->
-                              <input
-                                    v-model="recipeSearch.search"
-                                    type="search"
-                                    placeholder="Search..."
-                                    class="hidden px-2 py-1 text-black border rounded md:block w-96"
-                              />
-
                               <div>
+                                    <!-- Desktop Search (always visible) -->
+                                    <input
+                                          v-model="recipeSearch.search"
+                                          type="search"
+                                          placeholder="Search..."
+                                          class="hidden px-2 py-1 text-black border rounded outline-none md:block w-96"
+                                    />
                                     <!-- Suggestions Dropdown -->
                                     <ul
                                           v-if="
                                                 recipeSearch.recipeSuggestions
                                                       .length > 0
                                           "
-                                          class="absolute z-50 w-full mt-1 text-black bg-white border rounded shadow"
+                                          class="absolute z-50 w-64 h-64 p-4 mt-20 ml-[-19px] overflow-y-auto text-black bg-white border rounded shadow md:w-96 min-w-12 md:mt-1 md:ml-0"
                                     >
                                           <li
                                                 v-for="item in recipeSearch.recipeSuggestions"
@@ -71,7 +66,7 @@
                         <div
                               v-if="!isSeeRecipePage"
                               v-show="showHamburger"
-                              class="absolute w-64 top-16 right-20 md:hidden"
+                              class="absolute w-64 top-16 md:hidden left-20"
                         >
                               <input
                                     v-model="recipeSearch.search"
@@ -88,13 +83,13 @@
                         >
                               <!-- Input with clear button -->
                               <div
-                                    class="flex items-center w-full px-2 py-1 text-black border rounded"
+                                    class="flex items-center w-full text-black rounded"
                               >
                                     <input
                                           type="text"
                                           v-model="recipeSearch.category"
                                           placeholder="Select Category"
-                                          class="flex-1 w-32 text-white bg-transparent outline-none placeholder:text-white placeholder:text-xs"
+                                          class="flex-1 w-32 text-white bg-transparent border-none placeholder:text-white placeholder:text-xs"
                                           readonly
                                     />
 
@@ -119,7 +114,10 @@
                                           @click="
                                                 recipeSearch.selectCategory(
                                                       category
-                                                )
+                                                );
+                                                handleSeeCategoryResults(
+                                                      category
+                                                );
                                           "
                                           class="px-4 py-2 text-black cursor-pointer hover:bg-gray-200"
                                     >
@@ -138,14 +136,21 @@
       import { useSearch } from '@/stores/search';
       import { computed } from 'vue';
       import { useRoute } from 'vue-router';
+      import { useRouter } from 'vue-router';
       const recipeSearch = useSearch();
       const showHamburger = ref(false);
       let debounceTimeout = null;
       let debounceTimeoutCategory = null;
-      const route = useRoute();
 
+      const route = useRoute();
+      const router = useRouter();
       // Computed property that returns true if the user is on the see-recipe page
       const isSeeRecipePage = computed(() => route.path === '/see-recipe');
+
+      const handleSeeCategoryResults = (results) => {
+            recipeSearch.selectCategory(results);
+            router.push('/see-Category-Results');
+      };
 
       function toggleHamburger() {
             showHamburger.value = !showHamburger.value;
@@ -173,6 +178,7 @@
                               // If the input is empty:
                               recipeSearch.isFetched = false; // mark results as not fetched
                               recipeSearch.results = []; // clear previous results
+                              recipeSearch.recipeSuggestions = []; // ✅ clear suggestions too
                               recipeSearch.setQuery(''); // reset search input
                         } else {
                               // If the input has text:

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
-
+import router from '@/router';
 export const useSearch = defineStore('search', {
       state: () => ({
             search: '',
@@ -26,10 +26,10 @@ export const useSearch = defineStore('search', {
                   this.seeRecipe = [value];
             },
             selectSuggestions(suggestions) {
-                  this.recipeSuggestions = []; // optional: replace suggestions with clicked item
                   this.search = suggestions.strMeal; // set input to clicked suggestion
                   this.fetchResultsRecipe();
                   this.skipWatcher = true;
+                  this.recipeSuggestions = []; // optional: replace suggestions with clicked item
             },
             // Delay to allow clicking on a suggesiotns
             selectCategory(category) {
@@ -38,6 +38,7 @@ export const useSearch = defineStore('search', {
             },
             clearCategory() {
                   this.category = '';
+                  router.push('/');
             },
             showDropdown() {
                   this.showList = true;
@@ -84,7 +85,11 @@ export const useSearch = defineStore('search', {
             },
 
             async fetchResultsRecipe() {
-                  if (!this.search) return;
+                  if (!this.search.trim()) {
+                        this.recipeSuggestions = []; // clear suggestions if input is enmpty
+                        this.results = []; // also clear results
+                        return;
+                  }
 
                   try {
                         const response = await axios.get(

@@ -7,10 +7,10 @@
 </script>
 
 <template>
-      <div>
+      <div class="space-y-6">
             <div class="flex items-center justify-center py-12">
                   <h1
-                        class="relative text-xl font-semibold md:text-6xl text-customGreen top-7"
+                        class="relative text-xl font-semibold sm:text-5xl text-customGreen top-9 font-roboto md:top-12"
                   >
                         Welcome to Recipe Teller
                   </h1>

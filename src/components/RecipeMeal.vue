@@ -32,51 +32,57 @@
             <div
                   class="px-12 text-4xl text-center md:text-7xl sm:text-left text-customGreen"
             >
-                  <h1>Foods</h1>
+                  <h1 class="font-roboto">Foods</h1>
             </div>
 
-            <div
-                  class="grid grid-cols-1 gap-4 p-12 cursor-pointer sm:grid-cols-2 md:grid-cols-3"
-            >
+            <div class="p-12">
                   <div
-                        v-if="
-                              !recipeDetails.recipes ||
-                              recipeDetails.recipes.length === 0
-                        "
-                        class="text-2xl text-center text-gray-500 col-span-full"
+                        class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
                   >
-                        loading foods....
-                  </div>
-                  <div
-                        v-for="recipe in recipeDetails.recipes"
-                        :key="recipe.idMeal"
-                        class="bg-white rounded-lg shadow"
-                  >
-                        <!-- Image container with overflow-hidden -->
-                        <div class="overflow-hidden rounded-t-lg">
-                              <img
-                                    :src="recipe.strMealThumb"
-                                    :alt="recipe.strMeal"
-                                    class="w-full h-[220px] object-cover transition-transform duration-300 hover:scale-105"
-                              />
-                        </div>
+                        <!-- Loading state -->
                         <div
-                              class="flex flex-col p-2 text-lg text-center text-black"
+                              v-if="
+                                    !recipeDetails.recipes ||
+                                    recipeDetails.recipes.length === 0
+                              "
+                              class="text-xl font-medium text-center text-gray-500 col-span-full"
                         >
-                              {{ recipe.strMeal }}
+                              Loading foods...
                         </div>
 
-                        <!-- Text stays visible -->
-                        <p
-                              class="flex flex-col p-2 text-lg text-center text-black"
+                        <!-- Recipe cards -->
+                        <div
+                              v-for="recipe in recipeDetails.recipes"
+                              :key="recipe.idMeal"
+                              class="overflow-hidden transition duration-300 bg-white shadow-md rounded-xl hover:shadow-lg group"
                         >
-                              <button
-                                    @click="handleSeeRecipe(recipe)"
-                                    class="text-sm text-customGreen hover:underline"
+                              <!-- Image with hover zoom -->
+                              <div class="overflow-hidden">
+                                    <img
+                                          :src="recipe.strMealThumb"
+                                          :alt="recipe.strMeal"
+                                          class="object-cover w-full h-56 transition-transform duration-500 group-hover:scale-110"
+                                    />
+                              </div>
+
+                              <!-- Content -->
+                              <div
+                                    class="flex flex-col items-center p-4 text-center"
                               >
-                                    See recipe
-                              </button>
-                        </p>
+                                    <h3
+                                          class="mb-2 text-lg font-semibold text-gray-800"
+                                    >
+                                          {{ recipe.strMeal }}
+                                    </h3>
+
+                                    <button
+                                          @click="handleSeeRecipe(recipe)"
+                                          class="px-4 py-1 text-sm font-medium transition duration-300 border rounded-full text-customGreen border-customGreen hover:bg-customGreen hover:text-white"
+                                    >
+                                          See Recipe
+                                    </button>
+                              </div>
+                        </div>
                   </div>
             </div>
             <div class="flex items-center justify-center">
