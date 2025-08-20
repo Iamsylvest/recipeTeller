@@ -1,6 +1,7 @@
 <script setup>
+      import router from '@/router';
       import { useSearch } from '@/stores/search';
-
+      import Footer from '@/components/Footer.vue';
       const seeOneMeal = useSearch();
 
       // extract ingredients + measures
@@ -52,7 +53,7 @@
                         </h3>
 
                         <!-- Ingredients list -->
-                        <div>
+                        <div class="space-y-4">
                               <h4 class="text-lg font-bold">Ingredients:</h4>
                               <ul class="space-y-2 list-disc list-inside">
                                     <li
@@ -67,7 +68,7 @@
                         </div>
 
                         <!-- Instructions -->
-                        <div>
+                        <div class="space-y-4">
                               <h4 class="text-lg font-bold">Instructions:</h4>
                               <ol class="space-y-2 list-decimal list-inside">
                                     <li
@@ -85,4 +86,6 @@
       </div>
 
       <p v-else class="p-6 text-center text-gray-500">No recipe selected.</p>
+
+      <Footer />
 </template>

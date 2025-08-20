@@ -16,11 +16,19 @@ export const useSearch = defineStore('search', {
             skipWatcher: false,
             seeRecipe: [],
             mealName: null,
+            isLoadingRecipes: false,
       }),
 
       getters: {},
 
       actions: {
+            clearSelections() {
+                  this.seeRecipe = [];
+                  this.category = '';
+                  this.categoryResults = [];
+
+                  router.push('/');
+            },
             selectOneMeal(value) {
                   // Store the full recipe object directly
                   this.seeRecipe = [value];
@@ -90,6 +98,7 @@ export const useSearch = defineStore('search', {
                         this.results = []; // also clear results
                         return;
                   }
+                  this.isLoadingRecipes = true;
 
                   try {
                         const response = await axios.get(
@@ -103,6 +112,8 @@ export const useSearch = defineStore('search', {
                   } catch (error) {
                         console.error('Failed to fetch recipe:', error);
                         this.errorMessage = 'Could not load recipe details';
+                  } finally {
+                        this.isLoadingRecipes = false;
                   }
             },
 

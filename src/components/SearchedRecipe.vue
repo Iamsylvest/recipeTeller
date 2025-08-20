@@ -25,13 +25,13 @@
 </script>
 
 <template>
-      <div class="flex items-center justify-center p-14">
+      <div class="grid grid-cols-1 gap-8 p-14 place-items-center">
             <div
                   v-for="searchRecipe in recipeDetails.results"
                   :key="searchRecipe.idMeal"
-                  class="max-w-2xl overflow-hidden transition-shadow duration-300 bg-white rounded-lg shadow-md hover:shadow-xl"
+                  class="max-w-2xl p-10 transition-shadow duration-300 bg-white rounded-lg shadow-md hover:shadow-xl"
             >
-                  <div class="flex flex-col gap-6 p-6 text-justify">
+                  <div class="space-y-4">
                         <img
                               :src="searchRecipe.strMealThumb"
                               :alt="searchRecipe.strMeal"
@@ -45,7 +45,7 @@
                         </h3>
 
                         <!-- Ingredients list -->
-                        <div>
+                        <div class="space-y-4">
                               <h4 class="text-lg font-bold">Ingredients:</h4>
                               <ul class="space-y-2 list-disc list-inside">
                                     <li
@@ -60,7 +60,7 @@
                         </div>
 
                         <!-- Instructions -->
-                        <div>
+                        <div class="space-y-4">
                               <h4 class="text-lg font-bold">Instructions:</h4>
                               <ol class="space-y-2 list-decimal list-inside">
                                     <li

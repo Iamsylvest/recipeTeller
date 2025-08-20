@@ -32,7 +32,7 @@
             <div
                   class="px-12 text-4xl text-center md:text-7xl sm:text-left text-customGreen"
             >
-                  <h1 class="font-roboto">Foods</h1>
+                  <h1 class="font-cursive">Foods</h1>
             </div>
 
             <div class="p-12">
@@ -47,7 +47,14 @@
                               "
                               class="text-xl font-medium text-center text-gray-500 col-span-full"
                         >
-                              Loading foods...
+                              <Vue3Lottie
+                                    animationLink="/src/assets/LoadingAnimationBlue.json"
+                                    :loop="true"
+                                    :autoplay="true"
+                                    style="width: 150px; height: 150px"
+                                    class="text-customGreen"
+                              />
+                              <p class="font-cursive">Searching for meals...</p>
                         </div>
 
                         <!-- Recipe cards -->
@@ -86,7 +93,13 @@
                   </div>
             </div>
             <div class="flex items-center justify-center">
-                  <div class="flex items-center justify-center">
+                  <div
+                        v-if="
+                              recipeDetails.recipes &&
+                              recipeDetails.recipes.length > 0
+                        "
+                        class="flex items-center justify-center"
+                  >
                         <button
                               class="p-1 px-4 bg-gray-300 rounded-lg cursor-pointer hover:bg-customGreen hover:text-white"
                               @click="recipeDetails.previousPage"

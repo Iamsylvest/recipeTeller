@@ -3,6 +3,7 @@
       import SearchedRecipe from '@/components/SearchedRecipe.vue';
       import { useSearch } from '@/stores/search';
       import CategoryResults from '@/components/CategoryResults.vue';
+      import Footer from '@/components/Footer.vue';
       const seeRecipe = useSearch();
 </script>
 
@@ -10,24 +11,18 @@
       <div class="space-y-6">
             <div class="flex items-center justify-center py-12">
                   <h1
-                        class="relative text-xl font-semibold sm:text-5xl text-customGreen top-9 font-roboto md:top-12"
+                        class="relative text-xl font-semibold leading-tight sm:text-7xl text-customGreen top-9 md:top-12 font-cursive"
                   >
                         Welcome to Recipe Teller
                   </h1>
             </div>
 
-            <div>
-                  <img
-                        src="../assets/images/recipebg.jpeg"
-                        alt="Vegetables"
-                        class="object-cover w-full h-96"
-                  />
-            </div>
-
             <div
-                  class="flex items-center justify-center px-12 text-center sm:px-32"
+                  class="flex items-center justify-center px-12 text-center sm:px-64"
             >
-                  <p class="relative text-gray-700 text-md top-7">
+                  <p
+                        class="max-w-2xl mt-6 text-base leading-relaxed text-gray-700 sm:text-lg"
+                  >
                         Discover simple, delicious recipes you can make at home.
                         Whether you’re a beginner in the kitchen or a seasoned
                         cook, you’ll find easy-to-follow recipes, handy cooking
@@ -36,7 +31,7 @@
                   </p>
             </div>
 
-            <div class="relative mt-14">
+            <div class="relative">
                   <RecipeMeal
                         v-if="
                               !seeRecipe.results ||
@@ -46,5 +41,7 @@
                   <SearchedRecipe v-else />
             </div>
             <CategoryResults />
+
+            <Footer />
       </div>
 </template>

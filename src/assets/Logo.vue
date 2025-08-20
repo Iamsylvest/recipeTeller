@@ -1,4 +1,4 @@
 <script setup></script>
 <template>
-  <h1>logo</h1>
+      <h1 class="font-cursive">RecipeTeller</h1>
 </template>

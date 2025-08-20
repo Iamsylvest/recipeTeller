@@ -9,6 +9,7 @@ export default {
                   },
                   fontFamily: {
                         roboto: ['Roboto', 'sans-serif'],
+                        cursive: ['"Edu NSW ACT Cursive"', 'cursive'],
                   },
             },
       },

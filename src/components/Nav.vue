@@ -4,7 +4,9 @@
                   class="fixed top-0 left-0 z-50 flex justify-between w-full gap-12 p-4 px-12 font-bold text-white bg-customGreen"
             >
                   <div class="flex items-end justify-end gap-4">
-                        <router-link to="/"> <Logo /> </router-link>
+                        <button @click="recipeSearch.clearSelections()">
+                              <Logo />
+                        </button>
                         <div class="" v-if="!isSeeRecipePage">
                               <!-- Mobile Search Button -->
                               <button
@@ -36,7 +38,7 @@
                                           v-model="recipeSearch.search"
                                           type="search"
                                           placeholder="Search..."
-                                          class="hidden px-2 py-1 text-black border rounded outline-none md:block w-96"
+                                          class="hidden px-2 py-1 text-black border rounded outline-none md:block w-96 font-cursive"
                                     />
                                     <!-- Suggestions Dropdown -->
                                     <ul
@@ -44,7 +46,7 @@
                                                 recipeSearch.recipeSuggestions
                                                       .length > 0
                                           "
-                                          class="absolute z-50 w-64 h-64 p-4 mt-20 ml-[-19px] overflow-y-auto text-black bg-white border rounded shadow md:w-96 min-w-12 md:mt-1 md:ml-0"
+                                          class="absolute z-50 w-64 h-64 p-4 mt-20 ml-[-79px] overflow-y-auto text-black bg-white border rounded shadow md:w-96 min-w-12 md:mt-1 md:ml-0"
                                     >
                                           <li
                                                 v-for="item in recipeSearch.recipeSuggestions"
@@ -89,7 +91,7 @@
                                           type="text"
                                           v-model="recipeSearch.category"
                                           placeholder="Select Category"
-                                          class="flex-1 w-32 text-white bg-transparent border-none placeholder:text-white placeholder:text-xs"
+                                          class="flex-1 w-32 text-white bg-transparent border-none placeholder:text-white placeholder:text-xs font-cursive"
                                           readonly
                                     />
 
@@ -106,7 +108,7 @@
                               <!-- Dropdown -->
                               <ul
                                     v-if="recipeSearch.showList"
-                                    class="absolute z-50 w-full bg-white border rounded shadow-lg"
+                                    class="absolute z-50 w-full bg-white border rounded shadow-lg font-cursive"
                               >
                                     <li
                                           v-for="category in recipeSearch.categoryList"
