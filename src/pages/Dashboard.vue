@@ -11,7 +11,7 @@
       <div class="space-y-6">
             <div class="flex items-center justify-center py-12">
                   <h1
-                        class="relative text-xl font-semibold leading-tight sm:text-7xl text-customGreen top-9 md:top-12 font-cursive"
+                        class="relative text-2xl font-semibold leading-tight sm:text-5xl text-customGreen top-9 md:top-12 font-cursive"
                   >
                         Welcome to Recipe Teller
                   </h1>

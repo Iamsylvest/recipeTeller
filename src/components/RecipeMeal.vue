@@ -30,7 +30,7 @@
 <template>
       <div class="p-4">
             <div
-                  class="px-12 text-4xl text-center md:text-7xl sm:text-left text-customGreen"
+                  class="px-12 text-2xl text-center md:text-7xl sm:text-left text-customGreen"
             >
                   <h1 class="font-cursive">Foods</h1>
             </div>
