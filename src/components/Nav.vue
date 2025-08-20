@@ -68,13 +68,13 @@
                         <div
                               v-if="!isSeeRecipePage"
                               v-show="showHamburger"
-                              class="absolute w-64 top-16 md:hidden left-20"
+                              class="absolute w-64 top-16 md:hidden left-20 font-cursive"
                         >
                               <input
                                     v-model="recipeSearch.search"
                                     type="search"
                                     placeholder="Search..."
-                                    class="w-full px-3 py-2 text-black border rounded"
+                                    class="w-full px-3 py-2 text-black border rounded placeholder:font-cursive"
                               />
                         </div>
                         <div
